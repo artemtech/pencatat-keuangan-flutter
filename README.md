@@ -1,16 +1,30 @@
-# sofyan_pos
+# Pencatat Keuangan - Flutter Project
 
-A new Flutter project.
+Aplikasi sederhana untuk mencatat aktivitas keuangan sehari-hari.
+Diketik menggunakan Flutter dengan penuh :strong:.
 
-## Getting Started
+Dapat digunakan secara offline.
 
-This project is a starting point for a Flutter application.
+## Fitur
+- [x] Catat transaksi harian
+- [ ] Rekap transaksi bulanan
+- [x] Simpan transaksi secara offline
+- [ ] Backup transaksi di awan
+- [ ] Cetak daftar transaksi
 
-A few resources to get you started if this is your first Flutter project:
+## Mengkompilasi Aplikasi Ini
+Kamu membutuhkan komputer yang sudah dipasangi program Flutter (versi 2.0.3 atau diatasnya) dan Dart (versi 2.12.2 atau diatasnya).
+serta Android SDK dan perangkat Android dengan minimal API versi 21 ya!
+1. Lakukan klon aplikasi ini di komputermu dengan
+   `git clone https://github.com/artemtech/pencatat_keuangan`
+   atau klik tombol ---> [Download](https://github.com/artemtech/pencatat_keuangan/archive/refs/heads/master.zip) <----
+2. Unzip dan masuk ke direktori `pencatat_keuangan`
+3. lakukan perintah kompilasi dengan cara:
+   `flutter build apk`
+4. Hasil build apk berada di folder `build/app/outputs/flutter-apk/app-release.apk`
+5. Sambungkan gawai Android dengan komputermu dengan kabel USB, lalu salin ke media penyimpanan.
+   Atau bisa juga menggunakan adb untuk langsung memasang ke gawai Android:
+   `adb install build/app/outputs/flutter-apk/app-release.apk`
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Lisensi
+Aplikasi Pencatat Keuangan ini berlisensi MIT.
