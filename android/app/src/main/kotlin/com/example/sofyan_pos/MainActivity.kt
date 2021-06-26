@@ -1,4 +1,4 @@
-package com.example.sofyan_pos
+package id.artemtech.pencatat_keuangan
 
 import io.flutter.embedding.android.FlutterActivity
 

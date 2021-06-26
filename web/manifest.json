@@ -1,6 +1,6 @@
 {
-    "name": "sofyan_pos",
-    "short_name": "sofyan_pos",
+    "name": "pencatat_keuangan",
+    "short_name": "pencatat_keuangan",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

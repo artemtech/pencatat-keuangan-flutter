@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sofyan_pos">
+    package="id.artemtech.pencatat_keuangan">
    <application
-        android:label="sofyan_pos"
+        android:label="Pencatat Keuangan"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
