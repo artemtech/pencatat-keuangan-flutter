@@ -4,6 +4,7 @@ import 'package:pencatat_keuangan/config/constant.dart';
 import 'package:pencatat_keuangan/screens/dashboard_screen.dart';
 import 'package:pencatat_keuangan/screens/firstrun_screen.dart';
 import 'package:pencatat_keuangan/screens/new_transaction_screen.dart';
+import 'package:pencatat_keuangan/screens/report_screen.dart';
 
 class Routes {
   Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -17,6 +18,9 @@ class Routes {
       case addNewTransactionPage:
         return MaterialPageRoute(
             settings: settings, builder: (_) => NewTransactionScreen());
+      case reportPage:
+        return MaterialPageRoute(
+            settings: settings, builder: (_) => ReportScreen());
       default:
         return null;
     }
