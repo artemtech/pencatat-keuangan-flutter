@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:pencatat_keuangan/components/appbar.dart';
 import 'package:pencatat_keuangan/config/constant.dart';
+import 'package:pencatat_keuangan/models/report.dart';
 import 'package:pencatat_keuangan/models/transaction.dart';
+import 'package:pencatat_keuangan/services/reports_manager.dart';
 import 'package:pencatat_keuangan/services/transaction_manager.dart';
 
 class NewTransactionScreen extends StatefulWidget {
@@ -166,21 +167,51 @@ class _NewTransactionScreenState extends State<NewTransactionScreen> {
     );
   }
 
-  void onBtnSubmitPressed() {
+  void onBtnSubmitPressed() async {
     if (_formKey.currentState!.validate()) {
       // process data
       _formKey.currentState!.save();
+      DateTime curTime = DateTime.now();
       Transaction transaction = new Transaction(
           name: _name,
           description: _catatan,
           price: _price,
           qty: _qty,
           type: _type,
-          time: DateTime.now());
-      TransactionLocalStorage storage = TransactionLocalStorage();
+          time: curTime);
+      TransactionLocalStorage trxStorage = TransactionLocalStorage();
       TransactionManager transactionManager =
-          TransactionManager.getInstance(storage);
+          TransactionManager.getInstance(trxStorage);
       transactionManager.saveTransaction(transaction);
+
+      ReportLocalStorage reportStorage = ReportLocalStorage();
+      ReportManager reportManager = ReportManager.getInstance(reportStorage);
+      String month = DateFormat.MMMM("id_ID").format(curTime);
+      int year = int.parse(DateFormat.y("id_ID").format(curTime));
+      Map<dynamic, Report> _oldReport = await reportManager.getAt(month, year);
+      if (_oldReport.isEmpty) {
+        Report _newReport = Report(
+            pemasukan: (_type == TransactionType.Pemasukan)
+                ? (_price * _qty).toInt()
+                : 0,
+            pengeluaran: (_type == TransactionType.Pengeluaran)
+                ? (_price * _qty).toInt()
+                : 0,
+            bulan: month,
+            tahun: year);
+        reportManager.saveReport(_newReport);
+      } else {
+        Report _newReport = Report(
+            pemasukan: (_type == TransactionType.Pemasukan)
+                ? _oldReport.values.first.pemasukan + (_price * _qty).toInt()
+                : _oldReport.values.first.pemasukan,
+            pengeluaran: (_type == TransactionType.Pengeluaran)
+                ? _oldReport.values.first.pengeluaran + (_price * _qty).toInt()
+                : _oldReport.values.first.pengeluaran,
+            bulan: month,
+            tahun: year);
+        reportManager.updateReport(_oldReport.keys.first, _newReport);
+      }
       Navigator.pop(context);
     } else {
       print("invalid!");
