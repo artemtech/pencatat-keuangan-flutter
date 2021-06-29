@@ -7,7 +7,7 @@ Dapat digunakan secara offline.
 
 ## Fitur
 - [x] Catat transaksi harian
-- [ ] Rekap transaksi bulanan
+- [z] Rekap transaksi bulanan
 - [x] Simpan transaksi secara offline
 - [ ] Backup transaksi di awan
 - [ ] Cetak daftar transaksi
@@ -19,10 +19,12 @@ serta Android SDK dan perangkat Android dengan minimal API versi 21 ya!
    `git clone https://github.com/artemtech/pencatat_keuangan`
    atau klik tombol ---> [Download](https://github.com/artemtech/pencatat_keuangan/archive/refs/heads/master.zip) <----
 2. Unzip dan masuk ke direktori `pencatat_keuangan`
-3. lakukan perintah kompilasi dengan cara:
+3. lakukan get paket dengan cara:
+   `flutter pub get`
+4. lakukan perintah kompilasi dengan cara:
    `flutter build apk`
-4. Hasil build apk berada di folder `build/app/outputs/flutter-apk/app-release.apk`
-5. Sambungkan gawai Android dengan komputermu dengan kabel USB, lalu salin ke media penyimpanan.
+5. Hasil build apk berada di folder `build/app/outputs/flutter-apk/app-release.apk`
+6. Sambungkan gawai Android dengan komputermu dengan kabel USB, lalu salin ke media penyimpanan.
    Atau bisa juga menggunakan adb untuk langsung memasang ke gawai Android:
    `adb install build/app/outputs/flutter-apk/app-release.apk`
 
