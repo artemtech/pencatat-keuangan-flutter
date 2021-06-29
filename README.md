@@ -7,7 +7,7 @@ Dapat digunakan secara offline.
 
 ## Fitur
 - [x] Catat transaksi harian
-- [z] Rekap transaksi bulanan
+- [x] Rekap transaksi bulanan
 - [x] Simpan transaksi secara offline
 - [ ] Backup transaksi di awan
 - [ ] Cetak daftar transaksi

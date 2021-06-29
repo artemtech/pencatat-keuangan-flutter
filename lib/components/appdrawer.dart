@@ -24,14 +24,17 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         child: ListView(
+      padding: EdgeInsets.all(0),
       children: <Widget>[
         DrawerHeader(
-          padding: EdgeInsets.all(12),
+          padding: EdgeInsets.only(bottom: 20, left: 20),
           decoration: BoxDecoration(color: primarySolid),
-          child: Text(
-            "Pencatat Keuangan",
-            style: textStyle(textColor: whiteTextColor),
-          ),
+          child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Pencatat Keuangan v1.0",
+                style: TextStyle(color: whiteTextColor),
+              )),
         ),
         ListTile(
           leading: Icon(
