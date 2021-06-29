@@ -1,15 +1,15 @@
 import 'package:hive/hive.dart';
 import 'package:pencatat_keuangan/models/transaction.dart';
+import 'package:pencatat_keuangan/services/storage.dart';
 
 class TransactionManager {
-  ITransactionStorage? transactionStorage;
+  Storage? transactionStorage;
   static late final TransactionManager _instance =
       TransactionManager._internal();
 
   TransactionManager._internal();
 
-  static TransactionManager getInstance(
-      ITransactionStorage _transactionStorage) {
+  static TransactionManager getInstance(Storage _transactionStorage) {
     if (_instance.transactionStorage == null) {
       _instance.transactionStorage = _transactionStorage;
     }
@@ -19,14 +19,13 @@ class TransactionManager {
   void saveTransaction(Transaction transaction) {
     transactionStorage!.saveData(transaction);
   }
+
+  List<Transaction> loadAllTransactions() {
+    return transactionStorage!.loadData();
+  }
 }
 
-abstract class ITransactionStorage {
-  void saveData(Transaction transaction);
-  List<Transaction> loadData();
-}
-
-class TransactionLocalStorage implements ITransactionStorage {
+class TransactionLocalStorage implements Storage {
   Box<dynamic> transactionsBox = Hive.box("transactions");
 
   static final TransactionLocalStorage _instance =
@@ -37,7 +36,7 @@ class TransactionLocalStorage implements ITransactionStorage {
   factory TransactionLocalStorage() => _instance;
 
   @override
-  void saveData(Transaction transaction) async {
+  void saveData(transaction) async {
     transactionsBox.add(transaction);
   }
 
@@ -46,5 +45,17 @@ class TransactionLocalStorage implements ITransactionStorage {
   }
 
   @override
-  List<Transaction> loadData() => [];
+  List<Transaction> loadData() {
+    List<Transaction> result = [];
+    transactionsBox.toMap().forEach((key, value) {
+      Transaction t = value;
+      result.add(t);
+    });
+    return result;
+  }
+
+  @override
+  void updateData(index, newData) {
+    // TODO: implement updateData
+  }
 }
